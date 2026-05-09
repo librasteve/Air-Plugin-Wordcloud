@@ -4,8 +4,8 @@ use Air::Component;
 
 role Air::Plugin::Wordcloud does Component {
 
-    # List of words: [ ["word", weight], ... ]
-    has @.list;
+    # Word => weight map
+    has %.words;
 
     # Canvas size
     has $.width  = 500;
@@ -21,9 +21,9 @@ role Air::Plugin::Wordcloud does Component {
         backgroundColor  => 'transparent',
     );
 
-    #| Positional: word list
-    multi method new(@list, *%h) {
-        self.bless: :@list, |%h;
+    #| Positional: word => weight hash
+    multi method new(%words, *%h) {
+        self.bless: :%words, |%h;
     }
 
     method js-var {
@@ -32,8 +32,8 @@ role Air::Plugin::Wordcloud does Component {
 
     multi method HTML {
 
-        # Convert Raku list -> JS array
-        my $list-js = @!list.raku;
+        # Convert word => weight hash -> JS array of [word, weight] pairs
+        my $list-js = [%!words.map: { [$_.key, $_.value] }].raku;
 
         # Convert options hash -> JS object body
         my $opts-body = "";
@@ -70,6 +70,6 @@ role Air::Plugin::Wordcloud does Component {
     }
 }
 
-sub wordcloud(*@a, *%h) is export {
-    Air::Plugin::Wordcloud.new(|@a, |%h);
+sub wordcloud(%words, *%h) is export {
+    Air::Plugin::Wordcloud.new(%words, |%h);
 }

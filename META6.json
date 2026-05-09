@@ -6,8 +6,9 @@
   "build-depends": [
   ],
   "depends": [
+    "Air"
   ],
-  "description": "blah blah blah",
+  "description": "Wordcloud plugin for the Air web framework",
   "license": "Artistic-2.0",
   "name": "Air::Plugin::Wordcloud",
   "perl": "6.d",
@@ -16,8 +17,12 @@
   },
   "resources": [
   ],
-  "source-url": "",
+  "source-url": "https://github.com/librasteve/Air-Plugin-Wordcloud.git",
   "tags": [
+    "air",
+    "wordcloud",
+    "html",
+    "web"
   ],
   "test-depends": [
   ],

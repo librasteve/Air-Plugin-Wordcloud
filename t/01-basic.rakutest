@@ -1,0 +1,6 @@
+use Test;
+use Air::Plugin::Wordcloud;
+
+pass "replace me";
+
+done-testing;

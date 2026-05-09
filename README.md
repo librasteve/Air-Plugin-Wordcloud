@@ -13,22 +13,22 @@ use Air::Functional :BASE;
 use Air::Base;
 use Air::Plugin::Wordcloud;
 
-my @words = [
-    ["Raku",    10],
-    ["Air",      9],
-    ["HTMX",     7],
-    ["Grammar",  8],
-    ["»",        9],
-    ["«",        9],
-    ["∞",        8],
-];
+my %words =
+    Raku    => 10,
+    Air     =>  9,
+    HTMX    =>  7,
+    Grammar =>  8,
+    "»"     =>  9,
+    "«"     =>  9,
+    "∞"     =>  8,
+;
 
 my $site =
 site :register[Air::Plugin::Wordcloud.new, LightDark.new],
     page
         main [
             h3 'Word Cloud';
-            wordcloud :list(@words), :width(700), :height(400);
+            wordcloud %words, :width(700), :height(400);
         ]
 ;
 
@@ -39,7 +39,7 @@ $site.serve;
 
 `Air::Plugin::Wordcloud` wraps [wordcloud2.js](https://github.com/timdream/wordcloud2.js) as an Air component. It renders a `<canvas>` element and drives it with an inline script, injecting the CDN library link automatically via Air's plugin system.
 
-The word list is a list of `["word", weight]` pairs — the weight controls the relative font size of each word in the cloud.
+The word list is a `Hash` of `word => weight` pairs — the weight controls the relative font size of each word in the cloud.
 
 ### Options
 

@@ -41,43 +41,17 @@ $site.serve;
 
 The word list is a `Hash` of `word => weight` pairs — the weight controls the relative font size of each word in the cloud.
 
-### Options
-
-The following options are passed through to wordcloud2.js and can be overridden via `:options(...)`:
-
-| Option            | Default         | Description                              |
-|-------------------|-----------------|------------------------------------------|
-| `gridSize`        | `8`             | Grid cell size in px — smaller = denser  |
-| `weightFactor`    | `10`            | Font size multiplier                     |
-| `fontFamily`      | `'sans-serif'`  | Font family                              |
-| `color`           | `'random-dark'` | Word colour — `'random-dark'` or `'random-light'` |
-| `rotateRatio`     | `0.5`           | Fraction of words rotated (0–1)          |
-| `backgroundColor` | `'transparent'` | Canvas background                        |
-
-Any [wordcloud2.js option](https://github.com/timdream/wordcloud2.js/blob/gh-pages/API.md) can be passed.
-
-### Client-side re-rendering
-
-The plugin exposes the options object as a global JS variable (via `.js-var`) so the cloud can be re-rendered client-side with modified options — useful for interactive controls:
-
-```raku
-script q:to/JS/;
-    function rerenderWC() {
-        var opts = Object.assign({}, _wordcloud_1);
-        opts.gridSize     = 2;
-        opts.weightFactor = 18;
-        WordCloud(document.getElementById('/wordcloud/1'), opts);
-    }
-    JS
-```
-
-See [Air::Examples](https://raku.land/zef:librasteve/Air::Examples) (`bin/27-wordcloud.raku`) for a full working example including light/dark toggle and horizontal/vertical and fill-field controls.
-
 ## Installation
 
-```
-zef install Air::Plugin::Wordcloud
-```
+If you already have [Air](https://raku.land/zef:librasteve/Air) installed, then:
+
+ - `zef install Air::Plugin::Wordcloud`
+
+Otherwise, follow the Air::Examples [Getting Started](https://github.com/librasteve/Air-Examples/blob/main/README.md#getting-started)
+
+ - `cd Air-Examples`
+ - `raku bin/27-wordcloud.raku`
+ - point browser to `http://localhost:3000`
 
 ## Author
 

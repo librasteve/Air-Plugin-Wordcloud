@@ -43,7 +43,7 @@ The word list is a `Hash` of `word => weight` pairs — the weight controls the 
 
 ## Installation
 
-If you already have [Air](https://raku.land/zef:librasteve/Air) installed, then:
+If you already have [Air](https://raku.land/zef:librasteve/Air) working, then:
 
  - `zef install Air::Plugin::Wordcloud`
 
